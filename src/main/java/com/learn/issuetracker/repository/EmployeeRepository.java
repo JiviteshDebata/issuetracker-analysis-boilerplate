@@ -1,10 +1,14 @@
 package com.learn.issuetracker.repository;
 
+import com.learn.issuetracker.model.Employee;
+
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import com.learn.issuetracker.model.Employee;
 
 /*
  * This class is used to read employees data from the file and store the data in a List.
@@ -23,7 +27,9 @@ public class EmployeeRepository {
 	 * employees.csv file is "src --> data -> employees.csv"
 	 */
 	static {
-
+		employees = new ArrayList<Employee>();
+		Path p = Paths.get("src/data/employees.csv");
+		initializeEmployeesFromFile(p);
 	}
 
 	/*
@@ -34,6 +40,17 @@ public class EmployeeRepository {
 	 */
 	public static void initializeEmployeesFromFile(Path employeesfilePath) {
 
+		try {
+			List<String> empData = Files.readAllLines(employeesfilePath);
+
+			for (String emp : empData) {
+				Employee eObject = Utility.parseEmployee(emp);
+
+				employees.add(eObject);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -41,7 +58,11 @@ public class EmployeeRepository {
 	 * employee Id, and return the employee found, in an Optional<Employee> object
 	 */
 	public static Optional<Employee> getEmployee(int empId) {
-		return null;
+		for (Employee emp : employees) {
+			if (emp.getEmplId() == empId)
+				return Optional.of(emp);
+		}
+		return Optional.empty();
 	}
 
 	// Getter
