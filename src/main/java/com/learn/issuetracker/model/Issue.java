@@ -18,13 +18,6 @@ public class Issue {
 
 	public Issue() {
 		//Default Constructor
-		this.issueId = "";
-		this.summary = "";
-		this.createdOn = LocalDate.now();
-		this.expectedResolutionOn = null;
-		this.priority = "LOW";
-		this.status = "OPEN";
-		this.assignedTo = new Employee();
 	}
 
 	/*
@@ -32,17 +25,11 @@ public class Issue {
 	 */
 	public Issue(String issueId, String summary, LocalDate createdOn, LocalDate expectedResolutionOn, String priority,
 			String status, Employee assignedTo) {
-				this.issueId = issueId;
-				this.summary = summary;
-				this.createdOn = createdOn;
-				this.expectedResolutionOn = expectedResolutionOn;
-				this.priority = priority;
-				this.status = status;
-				this.assignedTo = assignedTo;
+
 	}
 
 	public String getIssueId() {
-		return this.issueId;
+		return issueId;
 	}
 
 	public void setIssueId(String issueId) {
@@ -50,7 +37,7 @@ public class Issue {
 	}
 
 	public String getSummary() {
-		return this.summary;
+		return summary;
 	}
 
 	public void setSummary(String summary) {
@@ -58,7 +45,7 @@ public class Issue {
 	}
 
 	public LocalDate getCreatedOn() {
-		return this.createdOn;
+		return createdOn;
 	}
 
 	public void setCreatedOn(LocalDate createdOn) {
@@ -66,7 +53,7 @@ public class Issue {
 	}
 
 	public LocalDate getExpectedResolutionOn() {
-		return this.expectedResolutionOn;
+		return expectedResolutionOn;
 	}
 
 	public void setExpectedResolutionOn(LocalDate expectedResolutionOn) {
@@ -74,7 +61,7 @@ public class Issue {
 	}
 
 	public String getPriority() {
-		return this.priority;
+		return priority;
 	}
 
 	public void setPriority(String priority) {
@@ -82,7 +69,7 @@ public class Issue {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
@@ -90,7 +77,7 @@ public class Issue {
 	}
 
 	public Employee getAssignedTo() {
-		return this.assignedTo;
+		return assignedTo;
 	}
 
 	public void setAssignedTo(Employee assignedTo) {

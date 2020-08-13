@@ -1,7 +1,6 @@
 package com.learn.issuetracker.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,8 +37,6 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	 * value in CURRENT_DATE variable
 	 */
 	public IssueTrackerServiceImpl(IssueRepository issueDao) {
-		this.today = LocalDate.parse(CURRENT_DATE);
-		this.issueDao = issueDao;
 
 	}
 
@@ -52,8 +49,7 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	 */
 	@Override
 	public long getClosedIssueCount() {
-		List<Issue> closedIssue = this.getIssuesByStatus("CLOSED");
-		return Long.valueOf(closedIssue.size());
+		return 0;
 	}
 
 	/*
@@ -63,14 +59,7 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 
 	@Override
 	public Issue getIssueById(String issueId) throws IssueNotFoundException {
-		List<Issue> issueList = this.issueDao.getIssues();
-
-		for (Issue I : issueList) {
-			if (I.getIssueId().equals(issueId))
-				return I;
-		}
-
-		throw new IssueNotFoundException();
+		return null;
 	}
 
 	/*
@@ -81,19 +70,7 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	 */
 	@Override
 	public Optional<Employee> getIssueAssignedTo(String issueId) {
-
-		try {
-			Issue iObj = this.getIssueById(issueId);
-			if (iObj.getAssignedTo() != null) {
-				return Optional.of(iObj.getAssignedTo());
-			} else {
-				return Optional.empty();
-			}
-		} catch (IssueNotFoundException e) {
-			e.printStackTrace();
-
-			return Optional.empty();
-		}
+		return null;
 	}
 
 	/*
@@ -102,14 +79,7 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	 */
 	@Override
 	public List<Issue> getIssuesByStatus(String status) {
-		List<Issue> iStatus = new ArrayList<Issue>();
-
-		for (Issue i : this.issueDao.getIssues()) {
-			if (i.getStatus().equals(status))
-				iStatus.add(i);
-
-		}
-		return iStatus;
+		return null;
 	}
 
 	/*
@@ -117,7 +87,7 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	 * issues in the ascending order of expected resolution date
 	 */
 	@Override
-	public Set<String> getOpenIssuesInExpectedResolutionOrder() { 
+	public Set<String> getOpenIssuesInExpectedResolutionOrder() {
 		return null;
 	}
 
@@ -160,15 +130,14 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	}
 
 	/*
-	 * The below method should return count of open issues grouped by priority in a
-	 * map. The map should have key as issue priority and value as count of open
-	 * issues
+	 * The below method should return count of open issues grouped by priority in a map. 
+	 * The map should have key as issue priority and value as count of open issues 
 	 */
 	@Override
 	public Map<String, Long> getOpenIssuesCountGroupedbyPriority() {
 		return null;
 	}
-
+	
 	/*
 	 * The below method should provide List of issue id's(open), grouped by location
 	 * of the assigned employee. It should return a map with key as location and
@@ -178,7 +147,7 @@ public class IssueTrackerServiceImpl implements IssueTrackerService {
 	public Map<String, List<String>> getOpenIssueIdGroupedbyLocation() {
 		return null;
 	}
-
+	
 	/*
 	 * The below method should provide the number of days, since the issue has been
 	 * created, for all high/medium priority open issues. It should return a map
